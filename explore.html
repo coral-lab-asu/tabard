@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>TABARD – Explore Anomalies</title>
+  <meta name="description" content="Browse example tables for each anomaly category in TABARD." />
+  <link rel="icon" type="image/x-icon" href="static/images/tabel.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css" />
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css" />
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="stylesheet" href="static/css/index.css" />
+
+  <!-- Template JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+
+  <style>
+    /* Consistent carousel slide box */
+    .results-carousel .item {
+      height: 600px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    /* Robust left+right layout */
+    .slide-wrap {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .slide-left {
+      flex: 1 1 40%;
+      max-height: 500px;
+      overflow: auto;                /* scroll if tall */
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .slide-right {
+      flex: 1 1 50%;
+
+      max-height: 500px;
+      overflow: auto;
+    }
+
+    /* Vertical demo table styling (independent of Bulma .table) */
+    .demo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .demo-table thead th {
+      background: #eef2f7;
+      text-align: left;
+      font-weight: 700;
+      border-bottom: 1px solid #d1d5db;
+      padding: 10px 12px;
+      position: sticky;
+      top: 0;                        /* sticky header while scrolling */
+      z-index: 2;
+    }
+    .demo-table tbody th[scope="row"] {
+      background: #f8fafc;
+      font-weight: 600;
+      border-right: 1px solid #e5e7eb;
+      position: sticky;
+      left: 0;                       /* sticky first column */
+      z-index: 1;
+      white-space: nowrap;
+    }
+    .demo-table th,
+    .demo-table td {
+      border-top: 1px solid #f1f5f9;
+      padding: 10px 12px;
+      vertical-align: top;
+    }
+
+    /* Right-side text spacing */
+    .slide-details,
+    .slide-details p,
+    .slide-details strong,
+    .slide-details em {
+        color: #363636 !important; /* Bulma's dark text */
+    }
+    .slide-details p { 
+        margin-bottom: 0.75rem; 
+        line-height: 1.5;
+    }
+
+    /* Stack heading above content inside each slide */
+    .results-carousel .item {
+    display: flex;
+    flex-direction: column;   /* <-- this makes the break to next line */
+    align-items: stretch;
+    }
+
+    /* Optional: spacing + centering for the heading row */
+    .slide-heading {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Top bar (Back to Home + Title) -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <a href="index.html" class="button is-dark is-rounded" style="margin-bottom:1rem;">
+          <span class="icon"><i class="fas fa-arrow-left"></i></span>
+          <span>Back to Home</span>
+        </a>
+        <h1 class="title is-2">Explore Anomalies</h1>
+        <p class="subtitle">Swipe through example tables for each anomaly category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carousel -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="explore-carousel" class="carousel results-carousel">
+
+          <!-- ===================== SLIDE 1: VALUE ANOMALIES ===================== -->
+        
+          <div class="item">
+            
+            <div class="slide-heading">
+                <h3 class="title is-4">Value Anomalies</h3>
+            </div>
+
+
+            <div class="slide-wrap">
+                
+              <!-- LEFT: VERTICAL TABLE (Field names in first column; values across Row 1..Row 3) -->
+              <div class="slide-left">
+                <table class="demo-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Transaction ID</th>
+                      <td>TXN001</td>
+                      <td>TXN002</td>
+                      <td>TXN003</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Date</th>
+                      <td>2024-11-01</td>
+                      <td>2024-11-02</td>
+                      <td>2024-11-03</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Amount</th>
+                      <td>$50.00</td>
+                      <td>$20000.00</td>
+                      <td>-$30.00</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Customer Info</th>
+                      <td>{"Name": "Alice"}</td>
+                      <td>{"Name": "Bob"}</td>
+                      <td>{"Name": "Charlie"}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Payment Status</th>
+                      <td>Completed</td>
+                      <td>Completed</td>
+                      <td>Failed</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Notes</th>
+                      <td></td>
+                      <td>Unusual outlier</td>
+                      <td>Negative value</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- RIGHT: sentence-style details -->
+              <div class="column is-5 slide-details content">
+
+                <p class="is-size-5">
+                    <strong>Outliers:</strong> Unusually high or low values.
+                    <em>Example:</em> Transaction amount of $10,000 in a dataset where typical values are between $10–$200.
+                </p>
+
+                <p class="is-size-5">
+                    <strong>Negative or Invalid Values:</strong> Negative entries where they don’t make sense.
+                    <em>Example:</em> −50 in a “Quantity Sold” column.
+                </p>
+                </div>
+
+            </div>
+          </div>
+          
+          <!-- ===================== SLIDE 2: STRUCTURAL ANOMALIES ===================== -->
+            <div class="item">
+            <!-- Heading on its own line -->
+            <div class="slide-heading">
+                <h3 class="title is-4">Structural Anomalies</h3>
+            </div>
+
+            <!-- Below: table (left) + details (right) -->
+            <div class="slide-wrap">
+                <!-- LEFT: VERTICAL TABLE (Field | Row 1 | Row 2 | Row 3) -->
+                <div class="slide-left">
+                <table class="demo-table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Product ID</th>
+                        <td>301</td>
+                        <td>302</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sales (USD)</th>
+                        <td>1000</td>
+                        <td>800</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Product Name</th>
+                        <td>Laptop</td>
+                        <td>Smartphone</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <!-- RIGHT: sentence-style details -->
+                <div class="column is-5 slide-details content">
+                <p class="is-size-5">
+                    <strong>Column order:</strong> The column <em>“Product Name”</em> appears at the end but is typically
+                    expected directly after <em>“Product ID”</em> for logical organization.
+                </p>
+                <p class="is-size-6">
+                    <strong>Suggested fix:</strong> Reorder columns to
+                    <code>Product ID → Product Name → Sales (USD)</code> to improve readability and schema consistency.
+                </p>
+                </div>
+            </div>
+            </div>
+            
+            <!-- ===================== SLIDE: LOGICAL ANOMALIES ===================== -->
+            <div class="item">
+            <!-- Heading row -->
+            <div class="slide-heading">
+                <h3 class="title is-4">Logical Anomalies</h3>
+            </div>
+
+            <!-- Two-column layout below the heading -->
+            <div class="slide-wrap">
+                <!-- LEFT: VERTICAL TABLE (Field | Row 1 | Row 2) -->
+                <div class="slide-left">
+                <table class="demo-table" aria-label="Logical Anomalies Example Data">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Location ID</th>
+                        <td>101</td>
+                        <td>102</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Sydney</td>
+                        <td>Toronto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Recorded Temperature (&deg;C)</th>
+                        <td>&minus;20</td>
+                        <td>40</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>2024-07-15</td>
+                        <td>2024-12-22</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Hemisphere</th>
+                        <td>Southern</td>
+                        <td>Northern</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <!-- RIGHT: sentence-style details -->
+                <div class="column is-5 slide-details content">
+                <h4 class="title is-5" style="margin-bottom:0.5rem;">Logical Disperancy</h4>
+                <ul class="is-size-5" style="margin-left:1rem;">
+                    <li><strong>Col 1 (Location 101 – Sydney):</strong> In the Southern Hemisphere, July is winter; a temperature of <em>&minus;20&deg;C</em> is extremely unlikely.</li>
+                    <li><strong>Col 2 (Location 102 – Toronto):</strong> In the Northern Hemisphere, December is winter; <em>40&deg;C</em> is implausible.</li>
+                </ul>
+                </div>
+            </div>
+            </div>
+
+            <!-- ===================== SLIDE: FACTUAL ANOMALIES ===================== -->
+            <div class="item">
+            <!-- Heading row -->
+            <div class="slide-heading">
+                <h3 class="title is-4">Factual Anomalies</h3>
+            </div>
+
+            <!-- Two-column layout below the heading -->
+            <div class="slide-wrap">
+                <!-- LEFT: VERTICAL TABLE (Field | Row 1 | Row 2) -->
+                <div class="slide-left">
+                <table class="demo-table" aria-label="Factual Anomalies Example Data">
+                    <tbody>
+                    <tr>
+                        <th scope="row">City ID</th>
+                        <td>C001</td>
+                        <td>C002</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">City Name</th>
+                        <td>Atlantis</td>
+                        <td>Springfield</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Population</th>
+                        <td>1,000,000</td>
+                        <td>-500</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <!-- RIGHT: sentence-style details -->
+                <div class="column is-5 slide-details content">
+                <h4 class="title is-5" style="margin-bottom:0.5rem;">Anomaly</h4>
+                <ul class="is-size-5" style="margin-left:1rem;">
+                    <li><strong>Col 1 (C001 – “Atlantis”):</strong> Refers to a mythical city; population value is factually invalid.</li>
+                    <li><strong>Col 2 (C002):</strong> Population is negative (<em>-500</em>), which is impossible.</li>
+                </ul>
+                </div>
+            </div>
+            </div>
+
+            <!-- ===================== SLIDE: TEMPORAL ANOMALIES ===================== -->
+            <div class="item">
+              <!-- Heading row -->
+              <div class="slide-heading">
+                <h3 class="title is-4">Temporal Anomalies</h3>
+              </div>
+
+              <!-- Two-column layout below the heading -->
+              <div class="slide-wrap">
+                <!-- LEFT: VERTICAL TABLE (Field | Row 1 | Row 2) -->
+                <div class="slide-left">
+                  <table class="demo-table" aria-label="Temporal Anomalies Example Data">
+                    <!-- <thead>
+                      <tr>
+                        <th style="width:28%;">Field</th>
+                        <th>Row 1</th>
+                        <th>Row 2</th>
+                      </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr>
+                        <th scope="row">Employee ID</th>
+                        <td>E001</td>
+                        <td>E002</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Work Date</th>
+                        <td>2024-03-01</td>
+                        <td>2024-03-01</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Check-In Time</th>
+                        <td>05:00 PM</td>
+                        <td>10:00 PM</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Check-Out Time</th>
+                        <td>09:00 AM</td>
+                        <td>02:00 AM</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- RIGHT: sentence-style details -->
+                <div class="column is-5 slide-details content">
+                  <h4 class="title is-5" style="margin-bottom:0.5rem;">Anomaly</h4>
+                  <ul class="is-size-5" style="margin-left:1rem;">
+                    <li>
+                      <strong>Employee ID E001:</strong> <em>Check-Out Time</em> (09:00 AM) occurs before the
+                      <em>Check-In Time</em> (05:00 PM) on the same date, which is temporally inconsistent.
+                    </li>
+                    <li>
+                      <strong>Employee ID E002:</strong> The shift spans midnight (10:00 PM → 02:00 AM) but
+                      <em>Work Date</em> remains the same; the end time should be recorded on the next day (2024-03-02) or marked as an overnight shift.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===================== SLIDE: CALCULATION ANOMALIES ===================== -->
+            <div class="item">
+              <!-- Heading row -->
+              <div class="slide-heading">
+                <h3 class="title is-4">Calculation Anomalies</h3>
+              </div>
+
+              <!-- Two-column layout below the heading -->
+              <div class="slide-wrap">
+                <!-- LEFT: VERTICAL TABLE (Field | Row 1 | Row 2 | Row 3) -->
+                <div class="slide-left">
+                  <table class="demo-table" aria-label="Business Revenue and Expense Data">
+                    <!-- <thead>
+                      <tr>
+                        <th style="width:28%;">Field</th>
+                        <th>Row 1</th>
+                        <th>Row 2</th>
+                        <th>Row 3</th>
+                      </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr>
+                        <th scope="row">Business ID</th>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>303</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Revenue (USD)</th>
+                        <td>100,000</td>
+                        <td>200,000</td>
+                        <td>150,000</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Expense (USD)</th>
+                        <td>90,000</td>
+                        <td>180,000</td>
+                        <td>120,000</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Declared Profit (USD)</th>
+                        <td>15,000</td>
+                        <td>5,000</td>
+                        <td>30,000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- RIGHT: sentence-style details -->
+                <div class="column is-5 slide-details content">
+                  <h4 class="title is-5" style="margin-bottom:0.5rem;">Anomaly</h4>
+                  <ul class="is-size-5" style="margin-left:1rem;">
+                    <li><strong>Profit formula:</strong> <code>Profit = Revenue − Expense</code>.</li>
+                    <li>
+                      <strong>Business ID 302:</strong> <code>200,000 − 180,000 = 20,000</code>; declared profit is
+                      <em>5,000</em>, suggesting possible underreporting.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===================== SLIDE: DATA CONSISTENCY ANOMALIES ===================== -->
+            <div class="item">
+              <!-- Heading row -->
+              <div class="slide-heading">
+                <h3 class="title is-4">Data Consistency Anomalies</h3>
+              </div>
+
+              <!-- Two-column layout below the heading -->
+              <div class="slide-wrap">
+                <!-- LEFT: VERTICAL TABLE (Field | Row 1 | Row 2 | Row 3 | Row 4) -->
+                <div class="slide-left">
+                  <table class="demo-table" aria-label="Customer Details (Consistency)">
+                    <!-- <thead>
+                      <tr>
+                        <th style="width:28%;">Field</th>
+                        <th>Row 1</th>
+                        <th>Row 2</th>
+                        <th>Row 3</th>
+                        <th>Row 4</th>
+                      </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr>
+                        <th scope="row">ID</th>
+                        <td>101</td>
+                        <td>103</td>
+                        <td>104</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Name</th>
+                        <td>John Doe</td>
+                        <td>Robert Johnson</td>
+                        <td>John Doe</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Phone <br> Number</th>
+                        <td>(123) 456-7890</td>
+                        <td>1234567890</td>
+                        <td>+1 123 456 7890</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Email</th>
+                        <td>j.doe@email.com</td>
+                        <td>rob.johnson@email.com</td>
+                        <td>john.doe@email.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- RIGHT: sentence-style details -->
+                <div class="column is-5 slide-details content">
+                  <h4 class="title is-5" style="margin-bottom:0.5rem;">Anomalies</h4>
+                  <ol class="is-size-5" style="margin-left:1rem;">
+                    <li>
+                      <strong>Phone Number</strong> uses inconsistent formats:
+                      <ul style="margin-left:1.25rem; margin-top:0.25rem;">
+                        <li><strong>Customer ID 101</strong> uses parentheses and a dash — <code>(123) 456-7890</code>.</li>
+                        <li><strong>Customer ID 103</strong> is unformatted — <code>1234567890</code>.</li>
+                        <li><strong>Customer ID 104</strong> uses international spacing — <code>+1 123 456 7890</code>.</li>
+                      </ul>
+                    </li>
+                    <li style="margin-top:0.75rem;">
+                      <strong>Name duplication:</strong> <em>John Doe</em> appears for both <strong>Customer ID 101</strong> and <strong>104</strong>,
+                      suggesting a possible duplicate entry.
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===================== SLIDE: SECURITY ANOMALIES ===================== -->
+            <div class="item">
+              <!-- Heading row -->
+              <div class="slide-heading">
+                <h3 class="title is-4">Security Anomalies</h3>
+              </div>
+
+              <!-- Two-column layout below the heading -->
+              <div class="slide-wrap">
+                <!-- LEFT: VERTICAL TABLE (Field | Row 1 | Row 2 | Row 3 | Row 4) -->
+                <div class="slide-left">
+                  <table class="demo-table" aria-label="Customer Financial Records (Security)">
+                    <!-- <thead>
+                      <tr>
+                        <th style="width:28%;">Field</th>
+                        <th>Row 1</th>
+                        <th>Row 2</th>
+                        <th>Row 3</th>
+                        <th>Row 4</th>
+                      </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr>
+                        <th scope="row">Customer ID</th>
+                        <td>101</td>
+                        <td>102</td>
+                        <td>103</td>
+                        <td>104</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Name</th>
+                        <td>John Doe</td>
+                        <td>Jane Smith</td>
+                        <td>Alice Brown</td>
+                        <td>Bob Green</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Account Number</th>
+                        <td>123456789</td>
+                        <td>987654321</td>
+                        <td>112233445</td>
+                        <td>556677889</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Credit Card Number</th>
+                        <td>4111 1234 5678 9012</td>
+                        <td>4111 2345 6789 0123</td>
+                        <td>4111 3456 7890 1234</td>
+                        <td>4111 4567 8901 2345</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Last Purchase Date</th>
+                        <td>2024-02-10</td>
+                        <td>2024-03-02</td>
+                        <td>2024-02-18</td>
+                        <td>2024-03-05</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Purchase Amount (USD)</th>
+                        <td>500</td>
+                        <td>1200</td>
+                        <td>750</td>
+                        <td>400</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- RIGHT: sentence-style details -->
+                <div class="column is-5 slide-details content">
+                  <h4 class="title is-5" style="margin-bottom:0.5rem;">Anomaly</h4>
+                  <ul class="is-size-5" style="margin-left:1rem;">
+                    <li>
+                      <strong>Sensitive data in clear text:</strong> The table exposes full
+                      <em>Credit Card Numbers</em> (PAN). Storing or displaying PAN without masking/encryption
+                      violates security best practices and risks data exposure.
+                    </li>
+                    <li>
+                      <strong>Mitigation:</strong> Mask PANs (e.g., <code>**** **** **** 9012</code>), tokenize or encrypt at rest,
+                      and restrict access to authorized roles only.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- ===================== SLIDE: NORMALIZATION ANOMALIES ===================== -->
+            <div class="item">
+              <!-- Heading row -->
+              <div class="slide-heading">
+                <h3 class="title is-4">Normalization Anomalies</h3>
+              </div>
+
+              <!-- Two-column layout below the heading -->
+              <div class="slide-wrap">
+                <!-- LEFT: VERTICAL TABLE (Field | Row 1 | Row 2 | Row 3 | Row 4) -->
+                <div class="slide-left">
+                  <table class="demo-table" aria-label="Employee Projects (Normalization)">
+                    <!-- <thead>
+                      <tr>
+                        <th style="width:28%;">Field</th>
+                        <th>Row 1</th>
+                        <th>Row 2</th>
+                        <th>Row 3</th>
+                        <th>Row 4</th>
+                      </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr>
+                        <th scope="row">Employee ID</th>
+                        <td>E001</td>
+                        <td>E002</td>
+                        <td>E003</td>
+                        <td>E004</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Employee Name</th>
+                        <td>John Smith</td>
+                        <td>Jane Doe</td>
+                        <td>John Smith</td>
+                        <td>Bob Brown</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Project ID</th>
+                        <td>P001</td>
+                        <td>P002</td>
+                        <td>P003</td>
+                        <td>P001</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Project Name</th>
+                        <td>Alpha Project</td>
+                        <td>Beta Project</td>
+                        <td>Gamma Project</td>
+                        <td>Alpha Project</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Manager Name</th>
+                        <td>Michael Lee</td>
+                        <td>Susan White</td>
+                        <td>Michael Lee</td>
+                        <td>Michael Lee</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Manager Contact</th>
+                        <td>m.lee@email.com</td>
+                        <td>s.white@email.com</td>
+                        <td>m.lee@email.com</td>
+                        <td>m.lee@email.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- RIGHT: sentence-style details -->
+                <div class="column is-5 slide-details content">
+                  <h4 class="title is-5" style="margin-bottom:0.5rem;">Anomalies</h4>
+                  <ul class="is-size-5" style="margin-left:1rem;">
+                    <li>
+                      <strong>Partial dependencies:</strong> <em>Employee Name</em> depends on <em>Employee ID</em>, while
+                      <em>Manager Name</em> and <em>Manager Contact</em> depend on <em>Project ID</em> (part of a composite key).
+                    </li>
+                    <li>
+                      <strong>2nd Normal Form (2NF) violation:</strong> Non-key attributes (<em>Manager Name</em>, <em>Manager Contact</em>)
+                      depend on only part of the primary key (<em>Project ID</em>), not the full composite (<em>Employee ID, Project ID</em>).
+                    </li>
+                    <li>
+                      <strong>Suggested design:</strong> Move manager details to a separate <em>Projects/Managers</em> table keyed by
+                      <em>Project ID</em>; keep employee-specific data in the current table and link via <em>Employee ID</em> and <em>Project ID</em>.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          Built with the Academic Project Page Template. <a href="index.html">Return to main page</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Initialize the carousel -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.bulmaCarousel) {
+        bulmaCarousel.attach('#explore-carousel', {
+          slidesToScroll: 1,
+          slidesToShow: 1,
+          pagination: true,
+          navigation: true,
+          loop: true
+        });
+      }
+    });
+  </script>
+</body>
+</html>

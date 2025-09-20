@@ -1,0 +1,191 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  padding: 20px;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+.slider-pagination .slider-page {
+  background: #000000;
+}
+
+.eql-cntrb { 
+  font-size: smaller;
+}
+
+
+
+
+
+
+/* ======== team styles */
+.team-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem; /* spacing between members */
+  flex-wrap: wrap; /* wrap on smaller screens */
+}
+.team-member {
+  text-align: center;
+}
+.team-member img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 0.5rem auto; /* center + spacing */
+}
+.team-member a {
+  text-decoration: none;
+  color: #3273dc; /* Bulma blue */
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.team-member a:hover {
+  text-decoration: underline;
+}
+
+.aff-logo {
+  height: 1.5em;        /* keeps logo inline with text */
+  /* vertical-align: middle; */
+  margin-left: 2px;   /* small spacing */
+}
+
+/* ===============================
+   Compact Footer (single line strip)
+   =============================== */
+.footer {
+  background: #f5f5f5;         /* light gray line (can tweak) */
+  border-top: 1px solid #ddd;  /* thin border at top */
+  padding: 0.5rem 0;           /* minimal height */
+  font-size: 0.75rem;          /* smaller text */
+  text-align: center;
+}
+
+.footer .content p {
+  margin: 0;                   /* remove extra spacing */
+  color: #666;                 /* softer gray text */
+  line-height: 1.2;
+}
